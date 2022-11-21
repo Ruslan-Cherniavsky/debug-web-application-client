@@ -33,7 +33,7 @@ export default function DataTable() {
       setLastPong(new Date().toISOString());
     });
 
-    socket.on("dataStreeming", (data) => {
+    socket.on("message", (data) => {
       let parsedData: IRailvisionMsg = JSON.parse(data).detections[0]
 
 
@@ -46,7 +46,7 @@ export default function DataTable() {
       socket.off('connect');
       socket.off('disconnect');
       socket.off('pong');
-      socket.off('dataStreeming');
+      socket.off('message');
     };
 
   }, []);
