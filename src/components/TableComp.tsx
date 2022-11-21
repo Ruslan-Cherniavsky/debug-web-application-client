@@ -39,7 +39,7 @@ export default function DataTable() {
 
 
       setResponse(arr => [...arr, parsedData])
-      console.log(parsedData)
+      console.log(data)
     });
 
     return () => {
