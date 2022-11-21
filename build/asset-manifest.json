@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.css": "/debug-web-application/static/css/main.edba15b5.css",
-    "main.js": "/debug-web-application/static/js/main.76bc7198.js",
-    "index.html": "/debug-web-application/index.html",
-    "main.edba15b5.css.map": "/debug-web-application/static/css/main.edba15b5.css.map",
-    "main.76bc7198.js.map": "/debug-web-application/static/js/main.76bc7198.js.map"
+    "main.css": "/debug-web-application-client/static/css/main.edba15b5.css",
+    "main.js": "/debug-web-application-client/static/js/main.76bc7198.js",
+    "index.html": "/debug-web-application-client/index.html",
+    "main.edba15b5.css.map": "/debug-web-application-client/static/css/main.edba15b5.css.map",
+    "main.76bc7198.js.map": "/debug-web-application-client/static/js/main.76bc7198.js.map"
   },
   "entrypoints": [
     "static/css/main.edba15b5.css",
