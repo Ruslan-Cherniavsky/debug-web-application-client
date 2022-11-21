@@ -36,8 +36,10 @@ export default function DataTable() {
     socket.on("dataStreeming", (data) => {
       let parsedData: IRailvisionMsg = JSON.parse(data).detections[0]
 
+
+
       setResponse(arr => [...arr, parsedData])
-      // console.log(parsedData)
+      console.log(parsedData)
     });
 
     return () => {
