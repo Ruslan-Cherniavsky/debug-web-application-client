@@ -9,44 +9,57 @@ import IRailvisionMsg from '../interfaces/RailvisionMsg';
 
 
 import { useState, useEffect } from "react";
-import io from 'socket.io-client';
+// import io from 'socket.io-client';
 
-const socket = io('ws://localhost:9876');
+// const socket = io('ws://localhost:9876');
+
+const socket = new WebSocket('ws://localhost:9876');
+
 
 export default function DataTable() {
-  const [isConnected, setIsConnected] = useState(socket.connected);
+  // const [isConnected, setIsConnected] = useState(socket.connected);
   const [lastPong, setLastPong] = useState(Date);
   const [response, setResponse] = useState<Array<any>>([]);
 
   useEffect(() => {
 
-    socket.on('connect', () => {
-      setIsConnected(true);
-    });
 
-    socket.on('disconnect', () => {
-      setIsConnected(false);
-      // alert(' Oh... No... Websocket disconected!')
-    });
+    socket.onopen = () => {
+      console.log('************************', 'WebSocket Client Connected');
+    };
+    socket.onmessage = ({ data }) => {
+      console.log('****** Message from server ', data);
+      console.log('******** Parsed message from server', JSON.stringify(data));
 
-    socket.on('pong', () => {
-      setLastPong(new Date().toISOString());
-    });
-
-    socket.on("message", (data) => {
       let parsedData: IRailvisionMsg = JSON.parse(data).detections[0]
 
-
-
       setResponse(arr => [...arr, parsedData])
-      console.log(data)
-    });
+
+    };
+
+    socket.onclose = () => {
+      console.log('************************', 'WebSocket Client closed');
+    };
+
+    // socket.on("message", (data) => {
+
+
+    //   let parsedData: IRailvisionMsg = JSON.parse(data).detections[0]
+
+
+
+    //   setResponse(arr => [...arr, parsedData])
+    //   console.log(data)
+    // });
 
     return () => {
-      socket.off('connect');
-      socket.off('disconnect');
-      socket.off('pong');
-      socket.off('message');
+      // socket.close()
+
+
+      // socket.off('connect');
+      // socket.off('disconnect');
+      // socket.off('pong');
+      // socket.off('message');
     };
 
   }, []);
@@ -55,10 +68,13 @@ export default function DataTable() {
   useEffect(() => {
     if (response.length > 999) {
       return () => {
-        socket.off('connect');
-        socket.off('disconnect');
-        socket.off('pong');
-        socket.off('message');
+
+        socket.close()
+
+        // socket.off('connect');
+        // socket.off('disconnect');
+        // socket.off('pong');
+        // socket.off('message');
       };
     }
     // console.log(response)

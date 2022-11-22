@@ -6,11 +6,11 @@ import WsTest from "./pages/wsTest";
 function App() {
   return (
     <div className="App">
-      {/* <Header /> */}
-      <WsTest />
+      <Header />
+      {/* <WsTest /> */}
 
-      {/* <DataStreemingPage /> */}
-      {/* <Footer /> */}
+      <DataStreemingPage />
+      <Footer />
     </div>
   );
 }
